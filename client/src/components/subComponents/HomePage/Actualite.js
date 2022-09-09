@@ -5,10 +5,8 @@ import article_inscrip from "../../../assets/article_inscrip.jpg";
 import article_activiteCAD from "../../../assets/article_activiteCAD.jpg";
 import article_rentree from "../../../assets/article_rentree.jpg";
 import article_lorem from "../../../assets/article_lorem.jpg";
-import "swiper/swiper.scss";
-import "swiper/components/navigation/navigation.scss";
-import "swiper/components/pagination/pagination.scss";
-import "swiper/components/scrollbar/scrollbar.scss";
+import "swiper/css";
+
 
 SwiperCore.use([Navigation]);
 

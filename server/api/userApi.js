@@ -15,7 +15,7 @@ usersRouter.post("/student/create", async (req, res) => {
     _id: new mongoose.Types.ObjectId(),
     nom: body.nom,
     prenom: body.prenom,
-    groupe: body.groupe,
+    groupe: new mongoose.Types.ObjectId(body.groupe),
   });
 
   let pass = await bcrypt.hash(body.password, await bcrypt.genSalt());
@@ -87,8 +87,8 @@ usersRouter.get('/',ensureAuth,async(req,res,next)=>{
 
     }
   }else if (req.user.role==="student"){
-    info = await StudentModel.findById(req.user.user)
-    group= await GroupModel.findById(info.groupe)
+    info = await StudentModel.findById(req.user["user"]);;
+    group= await GroupModel.findById(info.groupe);
     response = {
       nom:info.nom,
       prenom:info.prenom,
