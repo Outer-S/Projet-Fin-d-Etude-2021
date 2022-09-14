@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const crypto = require("crypto");
 const multer = require("multer");
-const GridFsStorage = require("multer-gridfs-storage");
+const {GridFsStorage} = require("multer-gridfs-storage");
 const path = require("path");
 
 let connectionString = "mongodb://localhost:27017/Eff";
 mongoose
   .connect(connectionString, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology:true,
     useCreateIndex: true,
   })
   .catch((err) => {
@@ -17,6 +17,7 @@ mongoose
 
 let storage = new GridFsStorage({
   url: connectionString,
+  options:{useUnifiedTopology:true},
   file: (req, file) => {
     return new Promise((resolve, reject) => {
       crypto.randomBytes(16, (err, buf) => {
@@ -27,7 +28,7 @@ let storage = new GridFsStorage({
         const fileInfo = {
           filename: filename,
           bucketName: "uploads",
-        };
+        }
         resolve(fileInfo);
       });
     });
